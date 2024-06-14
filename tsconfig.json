@@ -1,0 +1,84 @@
+// tsconfig.json
+
+{
+  // $schema를 작성하면 해당 json파일이 무엇을 의미하고, 어떤 값이 들어갈 수 있는 지 알려준다.
+  // 아래에서 자동완성을 사용할 수 있다.
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  // TS-> JS로 컴파일할 때 사용하는 옵션
+  "compilerOptions": {
+    // 변환을 목표로하는 언어 버전
+    "target": "es5",
+
+    // 폴리필을 붙여 Promise나 Map과 같은 객체들도 지원할 준비를 마쳤다고 해도, ts가 그 존재에 대해 모를 것이다.
+    // 이 경우 가장 최신의 버전을 의미하는 ESNext를 추가하면
+    // target은 es5라 할지라도 신규 기능에대한API를 확인할 수 있어 에러가 발생하지 않게된다.
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+    // TS가 JS파일 또한 컴파일할지 결정. 주로JS->TS 마이그레이션 과정에서 파이링 혼재되었을 경우 사용하는 옵션
+    "allowJs": true,
+
+    //라이브러리에서 제공하는 d.ts에 대한 검사여부 결정.
+    // 프로젝트 컴파일 시간이 길어지므로 일반적으로 꺼놓음
+    "skipLibCheck": true,
+
+    // 타입스크립트의 엄격모드 제어.
+    // alwaysStrict: 모든 js파일에 use strict 추가
+    // strictNullChecks: 엄격한 null검사 활성화 -> null과 undefined 엄격 구별
+    // strictBindCallApply: call,bind, apply에 대해 정확한 인수를 요구
+    // strictFuntionTypes: 함수타입 엄격검사
+    // strictPropertyInitialization: 클래스 내부 프로퍼티에 값할당 할때 타입 검사
+    // noImplicitAny: 타입 명시하지 않으면 any를 넣지않고 에러발생
+    // noImplicitThis: this추론 어려울 때 any넣지않고 에러발생
+    // useUnknownInCatchVariables: catch구문에서 잡은 변수에 any대신 unknown할당
+    "strict": true,
+
+    // 파일 대소문자 구별
+    "forceConsistentCasingInFileNames": true,
+
+    //컴파일하지않고, 타입 체크만 수행
+    "noEmit": true,
+
+    // CommonJS 방식으로 보낸 모듈을 ES모듈방식의 import로 가져올 수 있게 해줌
+    "esModuleInterop": true,
+
+    // 모듈설정: CommenJS는 require을, ESNext는 import사용
+    "module": "ESNext",
+
+    // 모듈 해석 방식
+    "moduleResolution": "node",
+
+    // JSON파일을 import할 수 있게 해줌, allowJS도 자동으로 켜짐
+    "resolveJsonModule": true,
+
+    // import나 export가 없다면 단순 스크립트파일로 인식해 이러한 파일이 생기지 않게해줌
+    "isolatedModules": true,
+
+    // tsx파일에 JSX를 어떻게 컴파일할지 설정
+    // react: 기본값, React.createElement로 변환
+    // react-jsx: 리액트17이후 등장. react/jsx-runtime을 사용해 변환하는데,
+    // 이 방식으로 사용하면 React.createElement를 사용하지 않아 파일 상단에 'react'를 적을 필요없음
+    // react-jsxdev: react-jsx와 동일하지만 디버깅 정보가 추가됨
+    // preserve: 변환하지 않고 유지함
+    // react-native: 네이티브에서 사용하는 방식으로, 역시 변환하지않고 유지함
+    "jsx": "preserve",
+
+    // 마지막 컴파일 정보를 저장해두었다가 다음에 비용이 가장 적게 드는 방식으로 컴파일수행
+    "incremental": true,
+
+    // 모듈을 찾을 때 기준이 되는 디렉토리
+    "baseUrl": "src",
+
+    // path에 alias지정
+    "paths": {
+      "#pages/*": ["pages/*"],
+      "#hooks/*": ["hooks/*"],
+      "#types/*": ["types/*"],
+      "#components/*": ["components/*"],
+      "#utils/*": ["utils/*"],
+    }
+  },
+  // 컴파일 대상에 포함시킬 목록
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  // 컴파일에서 제외시킬 목록
+  "exclude": ["node_moduls"]
+}
