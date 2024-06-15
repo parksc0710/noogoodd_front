@@ -1,13 +1,19 @@
 import React from 'react';
+import Home from "#components/Home";
+import Hello from "#components/Hello";
+import Name from "#components/Name";
+import ChildTitleComponent from "#components/ChildTitleComponent";
 
-function Home() {
+
+function Index() {
     return (
-        <div className="flex justify-center items-center h-screen">
-            <h1 className="text-4xl font-bold">
-                Welcome to Next.js with React 17 and TypeScript
-            </h1>
-        </div>
+        <>
+            <Home />
+            <Hello />
+            <Name />
+            <ChildTitleComponent title={"컴포넌트 테스트"} index={123} />
+        </>
     );
 }
 
-export default Home;
+export default Index;
