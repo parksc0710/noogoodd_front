@@ -5,6 +5,9 @@ import Name from "#components/Name";
 import ChildTitleComponent from "#components/ChildTitleComponent";
 import ContextSample from "#components/ContextSample";
 import TitleContext from "contexts/TitleContext";
+import UseStateSample from "#components/UseStateSample";
+import UseReducerSample from "#components/UseReducerSample";
+import UseEffectSample from "#components/UseEffectSample";
 
 const title:string = "Hello from Context";
 
@@ -18,8 +21,12 @@ function Index() {
             <TitleContext.Provider value={title}>
                 <ContextSample></ContextSample>
             </TitleContext.Provider>
+            <UseStateSample initValue={0}></UseStateSample>
+            <UseReducerSample initValue={0}></UseReducerSample>
+            <UseEffectSample></UseEffectSample>
         </>
     );
 }
 
 export default Index;
+
